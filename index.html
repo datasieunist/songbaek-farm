@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>송백농원 — 자연이 깃드는 휴식</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brown-dark: #3d3228;
+      --brown-mid:  #6b5744;
+      --brown-warm: #a08060;
+      --cream:      #f5efe8;
+      --cream-light:#faf7f3;
+      --text-main:  #2e2318;
+      --text-muted: #7a6a58;
+      --accent:     #7d9e7a;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--cream-light);
+      color: var(--text-main);
+      line-height: 1.8;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(160deg, #4a3c2e 0%, #2a2018 60%, #1a150e 100%);
+      overflow: hidden;
+      padding: 60px 24px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="600" height="600" filter="url(%23n)" opacity="0.08"/></svg>') repeat;
+      opacity: .4;
+    }
+    .hero-tag {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: var(--brown-warm);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .hero-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      font-weight: 300;
+      color: #f0e8dc;
+      line-height: 1.2;
+      position: relative;
+    }
+    .hero-title span { color: var(--brown-warm); }
+    .hero-sub {
+      margin-top: 28px;
+      font-size: 1rem;
+      color: #c0aa90;
+      max-width: 400px;
+      position: relative;
+    }
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--brown-warm);
+      margin: 36px auto;
+      position: relative;
+    }
+    .hero-cta {
+      display: inline-block;
+      position: relative;
+      padding: 14px 36px;
+      border: 1px solid var(--brown-warm);
+      color: var(--brown-warm);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      transition: all .3s;
+    }
+    .hero-cta:hover { background: var(--brown-warm); color: #fff; }
+
+    /* ── NAV ANCHOR GRID ── */
+    .nav-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      padding: 48px 24px;
+      background: var(--cream);
+      border-bottom: 1px solid #e0d4c4;
+    }
+    .nav-grid a {
+      padding: 10px 22px;
+      border: 1px solid var(--brown-warm);
+      border-radius: 2px;
+      font-size: 0.85rem;
+      color: var(--brown-mid);
+      text-decoration: none;
+      transition: all .25s;
+    }
+    .nav-grid a:hover { background: var(--brown-warm); color: #fff; }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    .section-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      color: var(--brown-warm);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 400;
+      color: var(--brown-dark);
+      margin-bottom: 32px;
+    }
+    .section-divider {
+      width: 40px;
+      height: 2px;
+      background: var(--brown-warm);
+      margin-bottom: 40px;
+    }
+
+    /* ── ROOM CARDS ── */
+    .room-intro {
+      background: var(--cream);
+      border-left: 3px solid var(--brown-warm);
+      padding: 28px 32px;
+      margin-bottom: 48px;
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 2;
+    }
+
+    .room-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    @media (max-width: 640px) { .room-grid { grid-template-columns: 1fr; } }
+
+    .room-card {
+      background: #fff;
+      border: 1px solid #e0d4c4;
+      overflow: hidden;
+      transition: box-shadow .3s;
+    }
+    .room-card:hover { box-shadow: 0 8px 32px rgba(90,60,30,.12); }
+
+    .room-card-header {
+      background: var(--brown-dark);
+      padding: 24px 28px;
+      color: #f0e8dc;
+    }
+    .room-card-header .tag { font-size: 0.7rem; letter-spacing: .2em; color: var(--brown-warm); margin-bottom: 4px; }
+    .room-card-header h3 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+    }
+
+    .room-card-img {
+      width: 100%;
+      height: 220px;
+      background: #c9b8a0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: #8a7060;
+      letter-spacing: .1em;
+      overflow: hidden;
+    }
+    .room-card-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .room-card-body { padding: 24px 28px; }
+    .room-card-body p { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 16px; }
+    .room-card-body .warning {
+      font-size: 0.8rem;
+      color: #a0704a;
+      background: #fdf0e8;
+      padding: 8px 12px;
+      margin-bottom: 16px;
+    }
+    .room-numbers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .room-numbers span {
+      background: var(--cream);
+      border: 1px solid #d0c0aa;
+      padding: 4px 12px;
+      font-size: 0.8rem;
+      color: var(--brown-mid);
+      border-radius: 2px;
+    }
+
+    /* ── HOURS TABLE ── */
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 640px) { .hours-grid { grid-template-columns: 1fr; } }
+
+    .hours-card {
+      background: #fff;
+      border: 1px solid #e0d4c4;
+      padding: 28px;
+    }
+    .hours-card h4 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1rem;
+      color: var(--brown-dark);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e0d4c4;
+    }
+    .hours-card ul { list-style: none; }
+    .hours-card li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      padding: 5px 0;
+      display: flex;
+      gap: 8px;
+    }
+    .hours-card li::before { content: '·'; color: var(--brown-warm); flex-shrink: 0; }
+    .hours-card .closed { color: #b06040; font-weight: 400; }
+    .hours-card .note {
+      margin-top: 14px;
+      font-size: 0.78rem;
+      color: var(--brown-warm);
+      background: var(--cream);
+      padding: 10px 12px;
+      line-height: 1.7;
+    }
+
+    /* ── CONTACT ── */
+    .contact-block {
+      background: var(--brown-dark);
+      color: #f0e8dc;
+      padding: 48px;
+      text-align: center;
+    }
+    .contact-block h3 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      margin-bottom: 24px;
+    }
+    .contact-phones { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-bottom: 28px; }
+    .contact-phones a {
+      font-size: 1.05rem;
+      color: var(--brown-warm);
+      text-decoration: none;
+      letter-spacing: .05em;
+    }
+    .contact-phones a:hover { text-decoration: underline; }
+
+    .naver-btn {
+      display: inline-block;
+      background: #03c75a;
+      color: #fff;
+      padding: 14px 36px;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: opacity .25s;
+    }
+    .naver-btn:hover { opacity: .85; }
+
+    /* ── PRICING ── */
+    .pricing-note {
+      background: var(--cream);
+      border: 1px dashed var(--brown-warm);
+      padding: 32px;
+      text-align: center;
+    }
+    .pricing-note p { color: var(--text-muted); margin-bottom: 16px; line-height: 2; }
+    .pricing-note .highlight { color: var(--brown-dark); font-weight: 600; }
+
+    /* ── EVENTS ── */
+    .event-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .event-list li {
+      background: #fff;
+      border: 1px solid #e0d4c4;
+      border-left: 4px solid var(--accent);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.92rem;
+      color: var(--text-main);
+    }
+    .event-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.7rem;
+      padding: 3px 10px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a150e;
+      text-align: center;
+      padding: 40px 24px;
+      font-size: 0.78rem;
+      color: #7a6a58;
+      letter-spacing: .05em;
+    }
+    footer strong { color: var(--brown-warm); }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-tag">자연이 깃드는 휴식</p>
+    <h1 class="hero-title"><span>송백</span>농원</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">
+      송백은 열대농원과 함께 자연속에서 휴식을 누릴 수 있는 공간입니다.<br>
+      도심에서 벗어나 자연속에서 느긋한 캠핑과 향긋한 커피를 즐겨보세요.
+    </p>
+    <div class="hero-divider"></div>
+    <a class="hero-cta" href="https://naver.me/5CWOaq5A" target="_blank">네이버 플레이스 바로가기</a>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-grid">
+    <a href="#hours">이용시간</a>
+    <a href="#caravan">카라반 안내</a>
+    <a href="#pricing">기본 요금안내</a>
+    <a href="#events">이벤트 요금안내</a>
+    <a href="#contact">문의</a>
+  </div>
+
+  <!-- 이용시간 -->
+  <section id="hours">
+    <p class="section-tag">Information</p>
+    <h2 class="section-title">이용시간</h2>
+    <div class="section-divider"></div>
+    <div class="hours-grid">
+      <div class="hours-card">
+        <h4>브런치 카페</h4>
+        <ul>
+          <li>월/화/목/일 &nbsp; 11:00 – 18:00<br><small style="font-size:.78rem;color:#a08060">(L.O. 17:20)</small></li>
+          <li>금/토 &nbsp; 11:00 – 20:00<br><small style="font-size:.78rem;color:#a08060">(L.O. 19:20)</small></li>
+          <li class="closed">매주 수요일 정기휴무</li>
+        </ul>
+        <div class="note">★ 요일별 영업시간 & 라스트오더 시간이 상이하니 참고 부탁드립니다.</div>
+      </div>
+      <div class="hours-card">
+        <h4>카라반</h4>
+        <ul>
+          <li>연중무휴</li>
+        </ul>
+      </div>
+      <div class="hours-card">
+        <h4>매점</h4>
+        <ul>
+          <li>09:00 – 20:00</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 카라반 안내 -->
+  <section id="caravan" style="background: var(--cream); max-width:100%; padding: 80px 0;">
+    <div style="max-width:900px; margin:0 auto; padding: 0 24px;">
+      <p class="section-tag">Caravan</p>
+      <h2 class="section-title">카라반 안내</h2>
+      <div class="section-divider"></div>
+
+      <div class="room-intro">
+        베드 배치에 따라 <strong>송 / 백</strong> 2가지 타입으로 나뉘며,<br>
+        수용인원 및 내·외부 시설은 동일합니다.<br>
+        손님들의 편의에 따라 객실을 선택하시면 됩니다.
+      </div>
+
+      <div class="room-grid">
+        <!-- 송 -->
+        <div class="room-card">
+          <div class="room-card-header">
+            <div class="tag">카라반 객실 소개</div>
+            <h3>Room Type : 송</h3>
+          </div>
+          <div class="room-card-img">
+            <span>객실 사진</span>
+          </div>
+          <div class="room-card-body">
+            <p>카라반 객실 한 곳에 더블베드 2개가 나란히 놓여 패밀리 베드처럼 이용 가능합니다.</p>
+            <p style="font-size:.8rem;color:var(--text-muted)">객실 번호</p>
+            <div class="room-numbers">
+              <span>송 1호</span><span>송 2호</span><span>송 3호</span><span>송 9호</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 백 -->
+        <div class="room-card">
+          <div class="room-card-header">
+            <div class="tag">카라반 객실 소개</div>
+            <h3>Room Type : 백</h3>
+          </div>
+          <div class="room-card-img">
+            <span>객실 사진</span>
+          </div>
+          <div class="room-card-body">
+            <p>카라반 객실 양쪽에 더블베드가 각각 놓여있고, 침대 아래에는 아늑한 다락 공간이 마련되어 있습니다.</p>
+            <div class="warning">* 침대 옆 계단이 있어 어린이 동반 시 보호자의 주의가 필요합니다.</div>
+            <p style="font-size:.8rem;color:var(--text-muted)">객실 번호</p>
+            <div class="room-numbers">
+              <span>백 4호</span><span>백 5호</span><span>백 6호</span><span>백 7호</span><span>백 8호</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 기본 요금안내 -->
+  <section id="pricing">
+    <p class="section-tag">Pricing</p>
+    <h2 class="section-title">기본 요금안내</h2>
+    <div class="section-divider"></div>
+    <div class="pricing-note">
+      <p>
+        성수기 / 비수기, 평일 / 주말 금액이 상이합니다.<br>
+        정확한 요금은 <span class="highlight">네이버 플레이스</span>에서 확인해 주세요.
+      </p>
+      <a class="naver-btn" href="https://naver.me/5CWOaq5A" target="_blank">네이버 플레이스에서 요금 확인하기</a>
+    </div>
+  </section>
+
+  <!-- 이벤트 요금안내 -->
+  <section id="events" style="background: var(--cream); max-width:100%; padding: 80px 0;">
+    <div style="max-width:900px; margin:0 auto; padding: 0 24px;">
+      <p class="section-tag">Events</p>
+      <h2 class="section-title">이벤트 요금안내</h2>
+      <div class="section-divider"></div>
+      <ul class="event-list">
+        <li>
+          <span class="event-badge">진행중</span>
+          구미시 거주자 대상 할인 이벤트
+        </li>
+        <li>
+          <span class="event-badge">진행중</span>
+          당일숙박 예약시 할인 이벤트
+        </li>
+      </ul>
+      <p style="margin-top:24px; font-size:0.88rem; color:var(--text-muted);">
+        ♣ 네이버 플레이스를 통해 전화주시면 안내 도와드리겠습니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- 문의 -->
+  <section id="contact" style="padding: 0; max-width:100%;">
+    <div class="contact-block">
+      <h3>이용 문의</h3>
+      <div class="contact-phones">
+        <a href="tel:01042110161">☎ 010-4211-0161</a>
+        <a href="tel:01026154248">☎ 010-2615-4248</a>
+      </div>
+      <a class="naver-btn" href="https://naver.me/5CWOaq5A" target="_blank">네이버 플레이스 예약하기</a>
+    </div>
+  </section>
+
+  <footer>
+    <strong>송백농원</strong> &nbsp;|&nbsp; 자연이 깃드는 휴식 &nbsp;|&nbsp;
+    <a href="https://naver.me/5CWOaq5A" style="color:var(--brown-warm); text-decoration:none;" target="_blank">네이버 플레이스</a>
+  </footer>
+
+</body>
+</html>
