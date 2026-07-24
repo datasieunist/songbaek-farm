@@ -225,6 +225,17 @@
       border-radius: 2px;
     }
 
+    /* ── ROOM SIMPLE ── */
+    .room-simple img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+    .room-simple .room-numbers {
+      margin-top: 14px;
+    }
+
     /* ── HOURS TABLE ── */
     .hours-grid {
       display: grid;
@@ -413,39 +424,18 @@
 
       <div class="room-grid">
         <!-- 송 -->
-        <div class="room-card">
-          <div class="room-card-header">
-            <div class="tag">카라반 객실 소개</div>
-            <h3>Room Type : 송</h3>
-          </div>
-          <div class="room-card-img">
-            <img src="room-song.jpg" alt="Room Type 송" />
-          </div>
-          <div class="room-card-body">
-            <p>카라반 객실 한 곳에 더블베드 2개가 나란히 놓여 패밀리 베드처럼 이용 가능합니다.</p>
-            <p style="font-size:.8rem;color:var(--text-muted)">객실 번호</p>
-            <div class="room-numbers">
-              <span>송 1호</span><span>송 2호</span><span>송 3호</span><span>송 9호</span>
-            </div>
+        <div class="room-simple">
+          <img src="room-song.jpg" alt="Room Type 송" />
+          <div class="room-numbers">
+            <span>송 1호</span><span>송 2호</span><span>송 3호</span><span>송 9호</span>
           </div>
         </div>
 
         <!-- 백 -->
-        <div class="room-card">
-          <div class="room-card-header">
-            <div class="tag">카라반 객실 소개</div>
-            <h3>Room Type : 백</h3>
-          </div>
-          <div class="room-card-img">
-            <img src="room-baek.jpg" alt="Room Type 백" />
-          </div>
-          <div class="room-card-body">
-            <p>카라반 객실 양쪽에 더블베드가 각각 놓여있고, 침대 아래에는 아늑한 다락 공간이 마련되어 있습니다.</p>
-            <div class="warning">* 침대 옆 계단이 있어 어린이 동반 시 보호자의 주의가 필요합니다.</div>
-            <p style="font-size:.8rem;color:var(--text-muted)">객실 번호</p>
-            <div class="room-numbers">
-              <span>백 4호</span><span>백 5호</span><span>백 6호</span><span>백 7호</span><span>백 8호</span>
-            </div>
+        <div class="room-simple">
+          <img src="room-baek.jpg" alt="Room Type 백" />
+          <div class="room-numbers">
+            <span>백 4호</span><span>백 5호</span><span>백 6호</span><span>백 7호</span><span>백 8호</span>
           </div>
         </div>
       </div>
