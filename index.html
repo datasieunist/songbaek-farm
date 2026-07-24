@@ -231,30 +231,19 @@
       aspect-ratio: 4/3;
       object-fit: cover;
       display: block;
+      border-radius: 8px;
     }
     .room-simple .room-numbers {
       margin-top: 14px;
+      justify-content: center;
     }
 
-    /* ── WARNING TOGGLE ── */
-    .warning-toggle {
+    /* ── WARNING NOTICE ── */
+    .warning-notice {
       margin-top: 12px;
       background: var(--brown-dark);
       border-radius: 3px;
-      overflow: hidden;
-    }
-    .warning-toggle summary {
       padding: 10px 16px;
-      font-size: 0.82rem;
-      color: #f5d76e;
-      cursor: pointer;
-      list-style: none;
-      user-select: none;
-    }
-    .warning-toggle summary::-webkit-details-marker { display: none; }
-    .warning-toggle[open] summary { border-bottom: 1px solid #5a4030; }
-    .warning-toggle p {
-      padding: 12px 16px;
       font-size: 0.82rem;
       color: #f5d76e;
       line-height: 1.7;
@@ -460,10 +449,9 @@
           <div class="room-numbers">
             <span>백 4호</span><span>백 5호</span><span>백 6호</span><span>백 7호</span><span>백 8호</span>
           </div>
-          <details class="warning-toggle">
-            <summary>⚠ 이용 시 주의사항</summary>
-            <p>침대 옆 계단이 있어 어린이 동반 시 보호자의 주의가 필요합니다.</p>
-          </details>
+          <div class="warning-notice">
+            💡 침대 옆 계단이 있어 어린이 동반 시 보호자의 주의가 필요합니다.
+          </div>
         </div>
       </div>
     </div>
